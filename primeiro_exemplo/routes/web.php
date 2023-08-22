@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\CidadeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,4 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/',function(){
-    return view('cidade');
-});
-
+Route::get('/',[CidadeController::class, 'cidades']);
