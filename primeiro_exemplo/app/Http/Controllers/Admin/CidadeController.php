@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CidadeRequest;
 use App\Models\Cidade;
 use Illuminate\Support\Facades\Redis;
 
@@ -17,6 +17,7 @@ class CidadeController extends Controller
 
         $cidades =  Cidade::all();
 
+     
 
         return view('Admin.cidades.index', compact('subtitulo', 'cidades'));
     }
@@ -27,16 +28,13 @@ class CidadeController extends Controller
 
     }
 
-    public function adicionar(Request $request){
-        //Criar um objeto do modelo (classe) cidade
-        //$cidade = new Cidade();
-        //$cidade->nome = $request->nome;
-
-        //$cidade->save(); //Salva no banco de dados
+    public function adicionar(CidadeRequest $request){
 
         Cidade::create($request->all());
 
-        return redirect()->route('admin.cidades.listar');
+        $request->session()->flash('sucesso',"Cidade $request->nome incluída com sucesso!");//gravar dados flash na sessão
 
+        return redirect()->route('admin.cidades.listar');
+      
     }
 }
