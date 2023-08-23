@@ -22,7 +22,7 @@ Route::redirect('/','/Admin/cidades');
 
 Route::prefix('Admin')->group(function(){
 
-    Route::get('cidades',[CidadeController::class, 'cidades']);
-    Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar']);
+    Route::get('cidades',[CidadeController::class, 'cidades'])->name('admin.cidades.listar');
+    Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar'])->name('admin.cidades.form');
     
 });
