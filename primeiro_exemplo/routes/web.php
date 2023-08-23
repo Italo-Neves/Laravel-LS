@@ -20,9 +20,10 @@ use App\Http\Controllers\Admin\CidadeController;
 
 Route::redirect('/','/Admin/cidades');
 
-Route::prefix('Admin')->group(function(){
+Route::prefix('Admin')->name('admin.')->group(function(){
 
-    Route::get('cidades',[CidadeController::class, 'cidades'])->name('admin.cidades.listar');
-    Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar'])->name('admin.cidades.form');
+    Route::get('cidades',[CidadeController::class, 'cidades'])->name('cidades.listar');
+    Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar'])->name('cidades.form');
+    Route::post('cidades/adicionar',[CidadeController::class, 'adicionar'])->name('cidades.adicionar');
     
 });
