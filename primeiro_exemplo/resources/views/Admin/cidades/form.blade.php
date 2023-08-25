@@ -20,7 +20,7 @@
         @csrf
 
         <div class="input-field">
-            <input type="text" name="nome" id="nome"/>
+            <input type="text" name="nome" id="nome" value="{{ old('nome') }}"/>
             <label for="nome">Nome</label>
             {{-- Mostrando erro por campo --}}
             @error('nome')
