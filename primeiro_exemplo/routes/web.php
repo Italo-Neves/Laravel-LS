@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CidadeController;
+use App\Models\Cidade;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +27,6 @@ Route::prefix('Admin')->name('admin.')->group(function(){
     Route::get('cidades',[CidadeController::class, 'cidades'])->name('cidades.listar');
     Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar'])->name('cidades.form');
     Route::post('cidades/adicionar',[CidadeController::class, 'adicionar'])->name('cidades.adicionar');
+    Route::delete('cidades/{id}', [CidadeController::class, 'deletar'])->name('cidades.deletar');
     
 });
