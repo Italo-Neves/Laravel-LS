@@ -14,13 +14,16 @@
         </div>
     @endif
     --}}
-    <form action="{{route('admin.cidades.adicionar')}}" method="POST">
+    <form action="{{$action}}" method="POST">
         
         {{-- Cross-site request forgery csrf --}}
         @csrf
+        @isset($cidade)
+            @method('PUT')
+        @endisset
 
         <div class="input-field">
-            <input type="text" name="nome" id="nome" value="{{ old('nome') }}"/>
+            <input type="text" name="nome" id="nome" value="{{ old('nome', $cidade->nome ?? '') }}"/> {{-- ?? -> operador de coalescência verifica se o nome já existe caso ele não exista ele retorna o dado a direita  --}}
             <label for="nome">Nome</label>
             {{-- Mostrando erro por campo --}}
             @error('nome')

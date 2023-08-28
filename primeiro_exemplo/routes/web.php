@@ -28,5 +28,7 @@ Route::prefix('Admin')->name('admin.')->group(function(){
     Route::get('cidades/adicionar',[CidadeController::class, 'formAdicionar'])->name('cidades.form');
     Route::post('cidades/adicionar',[CidadeController::class, 'adicionar'])->name('cidades.adicionar');
     Route::delete('cidades/{id}', [CidadeController::class, 'deletar'])->name('cidades.deletar');
+    Route::get('cidades/{id}',[CidadeController::class, 'formEditar'])->name('cidades.formEditar');
+    Route::put('cidades/{id}',[CidadeController::class, 'editar'])->name('cidades.editar');
     
 });
