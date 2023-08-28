@@ -3,63 +3,90 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\CidadeRequest;
 use App\Models\Cidade;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Http\Request;
 
 class CidadeController extends Controller
-{// Criada apartir do comando: php artisan make:controller Admin\CidadeController
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(){
 
-    public function cidades(){
         $subtitulo = 'Lista de Cidades';
-        //$cidades= ['Belo Horizonte', 'Recife', 'Florianopolis', 'Manaus'];
-
-        $cidades =  Cidade::all();
-
-     
-
-        return view('Admin.cidades.index', compact('subtitulo', 'cidades'));
+        $cidades = Cidade::All();
+        return view('admin.cidades.index', compact('subtitulo','cidades'));
     }
 
-    public function formAdicionar(){
-        $action = route('admin.cidades.adicionar');
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $action = route('admin.cidades.store');
         return view('admin.cidades.form', compact('action'));
-
     }
 
-    public function adicionar(CidadeRequest $request){
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         Cidade::create($request->all());
-
-        $request->session()->flash('sucesso',"Cidade $request->nome incluída com sucesso!");//gravar dados flash na sessão
-
-        return redirect()->route('admin.cidades.listar');
-      
-    }
-    
-    public function deletar($id, Request $request){
-        Cidade::destroy($id);
-        $request->session()->flash('sucesso',"Cidade $request->nome excluída com suscesso!");
-        return redirect()->route('admin.cidades.listar');
+        $request->session()->flash('sucesso', "Cidade $request->nome incluída com sucesso!");
+        return redirect()->route('admin.cidades.index');
     }
 
-    public function formEditar($id){
-        $cidade = Cidade::find($id); // cria uma variavel que identifica uma cidade pelo id
-        $action = route('admin.cidades.editar', $cidade->id); 
 
-        return view('admin.cidades.form', compact('cidade','action')); //passando as váriaveis para a view
-    }
 
-    public function editar(CidadeRequest $request, $id){
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
         $cidade = Cidade::find($id);
-        // metodo convencional
-        //$cidade->nome = $request->nome;
-        //$cidade->save();
-        //enxuto:
+        $action = route('admin.cidades.update', $cidade->id);
+        return view('admin.cidades.form', compact('cidade','action'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CidadeRequest $request, $id)
+    {
+        $cidade = Cidade::find($id);
         $cidade->update($request->all());
 
-        $request->session()->flash('sucesso',"Cidade $request->nome atualizada com sucesso!");
-        return redirect()->route('admin.cidades.listar');
+        $request->session()->flash('sucesso', "Cidade $request->nome alterada com sucesso!");
+
+        return redirect()->route('admin.cidades.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        Cidade::destroy($id);
+        $request->session()->flash('sucesso','Cidade excluida com sucesso!');
+        return redirect()->route('admin.cidades.index');
     }
 }

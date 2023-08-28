@@ -24,7 +24,7 @@ class CidadeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=>"bail|required|min:3|max:100|unique:cidades,nome,$this->id"
+            'nome'=>"bail|required|min:3|max:100|unique:cidades,nome,$this->cidade"// esse ultimo parametro impede que um campo não alterado de um registro bloqueie a atleração de todo registro
         ];
     }
 }

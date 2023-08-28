@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,10 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    {   //Mostar a rota em português na URL
+        Route::resourceVerbs([
+            'create' => 'criar',
+            'edit' => 'editar',
+        ]);
     }
 }
