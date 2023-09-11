@@ -51,7 +51,7 @@ class Imovel extends Model
     
     }
 
-    public function proximidade(){
+    public function proximidades(){
 
         $this->belongsToMany(Proximidade::class)->withTimestamps();
 
