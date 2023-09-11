@@ -13,8 +13,8 @@ class TipoSeeder extends Seeder
      */
     public function run()
     {
-        Tipo::created(['nome'=>'Apartamento']);
-        Tipo::created(['nome'=>'Casa']);
-        Tipo::created(['nome'=>'Ponto Comercial']);
+        Tipo::create(['nome'=>'Apartamento']);
+        Tipo::create(['nome'=>'Casa']);
+        Tipo::create(['nome'=>'Ponto Comercial']);
     }
 }

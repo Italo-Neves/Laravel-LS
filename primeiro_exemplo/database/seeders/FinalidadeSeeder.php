@@ -14,7 +14,7 @@ class FinalidadeSeeder extends Seeder
      */
     public function run()
     {
-        Finalidade::created(['nome'=>'Aluguel']);
-        Finalidade::created(['nome'=>'Venda']);
+        Finalidade::create(['nome'=>'Aluguel']);
+        Finalidade::create(['nome'=>'Venda']);
     }
 }

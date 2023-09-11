@@ -38,7 +38,7 @@ class CidadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CidadeRequest $request)
     {
         Cidade::create($request->all());
         $request->session()->flash('sucesso', "Cidade $request->nome incluída com sucesso!");

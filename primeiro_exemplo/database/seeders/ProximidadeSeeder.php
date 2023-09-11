@@ -14,25 +14,25 @@ class ProximidadeSeeder extends Seeder
      */
     public function run()
     {
-        Proximidade::created(['nome'=>'Academia']);
-        Proximidade::created(['nome'=>'Banco']);
-        Proximidade::created(['nome'=>'Bombeiro']);
-        Proximidade::created(['nome'=>'Cinema']);
-        Proximidade::created(['nome'=>'Clínica Médica']);
-        Proximidade::created(['nome'=>'Correios']);
-        Proximidade::created(['nome'=>'Escola']);
-        Proximidade::created(['nome'=>'Estacionamento']);
-        Proximidade::created(['nome'=>'Farmácia']);
-        Proximidade::created(['nome'=>'Hospital']);
-        Proximidade::created(['nome'=>'Padaria']);
-        Proximidade::created(['nome'=>'Parque']);
-        Proximidade::created(['nome'=>'Ponto de Ônibus']);
-        Proximidade::created(['nome'=>'Ponto de Táxi']);
-        Proximidade::created(['nome'=>'Posto de Combustível']);
-        Proximidade::created(['nome'=>'Posto Policial']);
-        Proximidade::created(['nome'=>'Restaurante']);
-        Proximidade::created(['nome'=>'Shopping']);
-        Proximidade::created(['nome'=>'Super Mercado']);
-        Proximidade::created(['nome'=>'Livraria']);
+        Proximidade::create(['nome'=>'Academia']);
+        Proximidade::create(['nome'=>'Banco']);
+        Proximidade::create(['nome'=>'Bombeiro']);
+        Proximidade::create(['nome'=>'Cinema']);
+        Proximidade::create(['nome'=>'Clínica Médica']);
+        Proximidade::create(['nome'=>'Correios']);
+        Proximidade::create(['nome'=>'Escola']);
+        Proximidade::create(['nome'=>'Estacionamento']);
+        Proximidade::create(['nome'=>'Farmácia']);
+        Proximidade::create(['nome'=>'Hospital']);
+        Proximidade::create(['nome'=>'Padaria']);
+        Proximidade::create(['nome'=>'Parque']);
+        Proximidade::create(['nome'=>'Ponto de Ônibus']);
+        Proximidade::create(['nome'=>'Ponto de Táxi']);
+        Proximidade::create(['nome'=>'Posto de Combustível']);
+        Proximidade::create(['nome'=>'Posto Policial']);
+        Proximidade::create(['nome'=>'Restaurante']);
+        Proximidade::create(['nome'=>'Shopping']);
+        Proximidade::create(['nome'=>'Super Mercado']);
+        Proximidade::create(['nome'=>'Livraria']);
     }
 }
