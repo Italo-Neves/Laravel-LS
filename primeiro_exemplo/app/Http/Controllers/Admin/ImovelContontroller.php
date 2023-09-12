@@ -55,7 +55,7 @@ class ImovelContontroller extends Controller
         $imovel = Imovel::create($request->all());
         $imovel->endereco()->create($request->all());
 
-        if($request->has('proximidade')){
+        if($request->has('proximidades')){
             $imovel->proximidades()->sync($request->proximidades);
         }
         
@@ -84,9 +84,16 @@ class ImovelContontroller extends Controller
      */
     public function edit($id)
     {
-        $imovel = Imovel::find($id);
+        $imovel = Imovel::with(['cidade','endereco', 'finalidade','tipo','proximidades'])->find($id);
+
+        $cidades = Cidade::all();
+        $tipos = Tipo::all();
+        $finalidades = Finalidade::all();
+        $proximidades = Proximidade::all();
+
         $action = route('admin.imoveis.update', $imovel->id);
-        return view('admin.imoveis.form', compact('imovel','action'));
+
+        return view('admin.imoveis.form', compact('imovel','action', 'cidades', 'tipos', 'finalidades', 'proximidades'));
     }
 
     /**
@@ -99,10 +106,17 @@ class ImovelContontroller extends Controller
     public function update(ImovelRequest $request, $id)
     {
         $imovel = Imovel::find($id);
+
+
         $imovel->update($request->all());
+        $imovel->endereco->update($request->all());
 
+        if($request->has('proximidade')){
+            $imovel->proximidades()->sync($request->proximidades);
+        }
+
+        
         $request->session()->flash('sucesso', "Imóvel $request->nome alterado com sucesso!");
-
         return redirect()->route('admin.imoveis.index');
     }
 
