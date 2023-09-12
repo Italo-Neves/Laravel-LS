@@ -50,23 +50,16 @@ class ImovelContontroller extends Controller
     public function store(ImovelRequest $request)
     {
       
-        try{
+        DB::beginTransaction();
+        
+        $imovel = Imovel::create($request->all());
+        $imovel->endereco()->create($request->all());
 
-            $dados = $request->validated();
-
-            if($dados){
-                $imovel = Imovel::create($dados);
-                $imovel->endereco()->create($dados);
-            }
-
-            if($request->has('proximidades')) {
-
-                $imovel->proximidades()->sync($request->proximidades);
-            }
-        }catch(Exception $e){
-            return $e;
+        if($request->has('proximidade')){
+            $imovel->proximidades()->sync($request->proximidades);
         }
-    
+        
+        DB::commit();
 
         $request->session()->flash('sucesso',"Imóvel incluído com sucesso!");
         return redirect()->route('admin.imoveis.index');
