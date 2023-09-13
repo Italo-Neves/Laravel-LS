@@ -17,7 +17,7 @@ class CreateEnderecosTable extends Migration
             $table->id();
             $table->string('rua', 100);
             $table->integer('numero');
-            $table->string('complemento', 10);
+            $table->string('complemento', 20)->nullable();
             $table->string('bairro', 100);
 
             $table->foreignId('imovel_id')->constrained('imoveis')->onDelete('cascade'); //Neste caso como como o nome da migrate gerada foi altareada precisamo inserir o nome da tabela na constrained
