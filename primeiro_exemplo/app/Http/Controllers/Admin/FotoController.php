@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Foto;
 use App\Http\Controllers\Controller;
 use App\Models\Imovel;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Image;
 
 class FotoController extends Controller
 {
@@ -45,8 +47,14 @@ class FotoController extends Controller
         if($request->hasFile('foto')){
             //Checar se não houver erro no upload da imagem
             if($request->foto->isValid()){
-                //armazena o arquivo no disco e retorna o caminho do arquivo
-                $fotoURL = $request->foto->store("imoveis/$idImovel",'public');
+                //Pegando o caminho e o nome do arquivo para salvar no disco
+                $fotoURL = $request->foto->hashName("imoveis/$idImovel");
+
+                //Redimensionando a imagem
+                $imagem = Image::make($request->foto)->fit(1600, 900);
+
+                //Salvar imagem no disco
+                Storage::disk('public')->put($fotoURL, $imagem->encode());
 
                 //Armazenando a url da foto no banco de dados
                 $foto = new Foto();
