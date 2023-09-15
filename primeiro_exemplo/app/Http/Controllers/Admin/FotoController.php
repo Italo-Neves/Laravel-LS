@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Foto;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FotoRequest;
 use App\Models\Imovel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class FotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $idImovel)
+    public function store(FotoRequest $request, $idImovel)
     {   //checa se o arquivo da requisição é uma imagem
         if($request->hasFile('foto')){
             //Checar se não houver erro no upload da imagem
