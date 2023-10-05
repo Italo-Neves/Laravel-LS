@@ -20,10 +20,34 @@ class ImovelContontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $imoveis = Imovel::with(['cidade','endereco'])->orderBy('titulo','asc')->get();
-        return view('admin.imoveis.index',compact('imoveis'));
+
+
+        $imoveis = Imovel::join('cidades', 'cidades.id', '=', 'imoveis.cidade_id')
+            ->join('enderecos', 'enderecos.imovel_id','=','imoveis.id')
+            ->orderBy('cidades.nome', 'asc')
+            ->orderBy('enderecos.bairro', 'asc')
+            ->orderBy('titulo', 'asc');
+        
+        $cidade_id = $request->cidade_id;
+        $titulo = $request->titulo;
+
+        //filtro de cidade
+        if($cidade_id){
+            $imoveis->where('cidades.id', $cidade_id);
+        }    
+        //filtro de titulo
+        if($titulo){
+            $imoveis->where('titulo', 'like',"%$titulo%");
+        }
+
+        $imoveis = $imoveis->get();
+
+
+        $cidades = Cidade::orderBy('nome')->get();
+
+        return view('admin.imoveis.index',compact('imoveis', 'cidades','cidade_id','titulo'));
     }
 
     /**
