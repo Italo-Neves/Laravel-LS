@@ -17,9 +17,7 @@ use App\Models\Cidade;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::redirect('/','/Admin/cidades');
-
+//Administrativa
 Route::prefix('Admin')->name('admin.')->group(function(){
 
     Route::resource('cidades',CidadeController::class)->except(['show']); // assim não é necessário ficar nomendo as rotas. pois o laravael vai utilizar o padrão
@@ -27,3 +25,6 @@ Route::prefix('Admin')->name('admin.')->group(function(){
     Route::resource('imoveis.fotos',FotoController::class)->except(['show', 'edit', 'update']); // a foto sempre estará associada a um imóvel
     //except serve para excluir uma rota criada automaticamente com o --resouce
 });
+
+//Site principal
+Route::resource('/', App\Http\Controllers\Site\CidadeController::class)->only('index');
