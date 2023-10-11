@@ -56,6 +56,11 @@ class Imovel extends Model
         return $this->belongsToMany(Proximidade::class)->withTimestamps();
 
     }
+
+    public function fotos(){
+
+        return $this->hasMany(Foto::class);
+    }
 }
 // Como a chafe estrangeira de imoveis fica em endereço logo imoveis é mais importante na relação e logo utilizamos "hasOne"
 // O laravel espera que na tabela associada exista uma chave estrangeira em snake_case

@@ -28,3 +28,4 @@ Route::prefix('Admin')->name('admin.')->group(function(){
 
 //Site principal
 Route::resource('/', App\Http\Controllers\Site\CidadeController::class)->only('index');
+Route::resource('cidades.imoveis', App\Http\Controllers\Site\ImovelController::class)->only(['index','show']);

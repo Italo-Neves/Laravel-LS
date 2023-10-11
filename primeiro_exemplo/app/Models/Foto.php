@@ -14,7 +14,7 @@ class Foto extends Model
         'imovel_id'
     ];
 
-    public function imoveis(){
+    public function imovel(){
 
         return $this->belongsTo(Imovel::class);
     
