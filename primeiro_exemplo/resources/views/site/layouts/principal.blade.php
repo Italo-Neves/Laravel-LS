@@ -38,12 +38,17 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function(){
+                //slider
                 var slider = document.querySelectorAll('.slider');
                 M.Slider.init(slider, {
                     indicators: false,
                     height: 400,
                     interval: 3000
                 });
+
+                //Material box
+                var boxes = document.querySelectorAll('.materialboxed');
+                M.Materialbox.init(boxes);
             });
         </script>
 
