@@ -17,3 +17,35 @@
         </div>
     </section>
 @endsection
+
+@section('slider')
+    <section class="slider">
+        <ul class="slides">
+            <li>
+                <img src="https://source.unsplash.com/eWqOgJ-lfiI/1900x600"/>
+                <div class="caption center-align">
+                    <h2 style="text-shadow: 2px 2px 8px #1b5e20;">
+                        Encontre os melhores imoveis da ciadade!
+                    </h2>
+                </div>
+            </li>
+            <li>
+                <img src="https://source.unsplash.com/TiVPTYCG_3E/1900x600"/>
+                <div class="caption left-align">
+                    <h2 style="text-shadow: 2px 2px 8px #1b5e20;">
+                        Satisfação e conforto
+                    </h2>
+                </div>
+            </li>
+            <li>
+                <img src="https://source.unsplash.com/2gDwlIim3Uw/1900x600"/>
+                <div class="caption right-align">
+                     <h2 style="text-shadow: 2px 2px 8px #1b5e20;">
+                        Preços acessíveis.
+                    </h2>
+                </div>
+            </li>
+        </ul>
+        
+    </section>
+@endsection

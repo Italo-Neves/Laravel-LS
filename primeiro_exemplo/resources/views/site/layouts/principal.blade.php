@@ -20,6 +20,9 @@
             </div>
         </nav>
 
+        {{-- Slider --}}
+        @yield('slider')
+
         {{--Conteudo Principal--}}
         <div class="container">
             @yield('conteudo-principal')
@@ -31,8 +34,18 @@
             @yield('secundario')
         </div>
 
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                var slider = document.querySelectorAll('.slider');
+                M.Slider.init(slider, {
+                    indicators: false,
+                    height: 400,
+                    interval: 3000
+                });
+            });
+        </script>
 
     </body>
 </html>
